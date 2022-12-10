@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 
 <html lang="en">
@@ -7,9 +8,9 @@
         <meta name="description" content="">
         <meta name="author" content="Hayley van Waas">
         <link href="https://fonts.googleapis.com/css?family=Manjari&display=swap" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
     </head>
-
+    {% block stylesheets %}{% endblock %}
     <body>
         <header>
             <div id="header-text">
@@ -18,8 +19,9 @@
                 </a>
             </div>
             <!-- include nav here -->
+            {% include './nav.html' %}
         </header>
-
+        {% block content %}{% endblock %}
         <!-- content blocks here -->
     </body>
 </html>
