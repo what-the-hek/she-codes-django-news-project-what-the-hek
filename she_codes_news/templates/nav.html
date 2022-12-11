@@ -3,9 +3,11 @@
     {% if request.user.is_authenticated %}
     
     <a href="{% url 'users:viewAccount' request.user.id %}">{{ user.username }}</a>
+    <a href="{% url 'news:newStory' %}">Write New Story</a>
+    <a href="{% url 'users:viewAllAccounts' %}">View accounts</a>
     <a href="{% url 'logout' %}">Logout</a>
     {% else %}
     <a href="{% url 'login' %}">Login</a>
-    <a href="">Create account</a>
+    <a href="{% url 'users:createAccount' %}">Create account</a>
     {% endif %}
 </nav>
