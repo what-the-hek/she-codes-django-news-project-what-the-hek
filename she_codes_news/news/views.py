@@ -32,4 +32,3 @@ class AddStoryView(generic.CreateView):
         # this means to set the author as the user currently logged in
         form.instance.author = self.request.user
         return super().form_valid(form)
-    

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>View Profile</h2>
+
+<p>Hello {{ user.username }}</p>
+<img src="" alt="{{ user.username }} profile picture">
+<p>Email: {{ user.email }}</p>
+<p>Bio placeholder {{ user.bio }}</p>
+<p>View your published articles</p>
+<!-- insert a form here to edit details -->
+<p>Change username</p>
+<p>Change email</p>
+<p>Edit bio</p>
+<p>Upload profile picture</p>
+{% endblock %}

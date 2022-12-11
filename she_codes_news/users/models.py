@@ -7,4 +7,3 @@ class CustomUser(AbstractUser):
     # this gives me the name of the user on screen
     def __str__(self):
         return self.username
-        
