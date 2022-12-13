@@ -122,4 +122,8 @@ form input, form textarea {
     background-color: darkslategray;
 }
 
+.warning-label {
+    font-size: 1.5em;
+}
+
 /* ---- end form ---- */
