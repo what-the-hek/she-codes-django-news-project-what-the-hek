@@ -13,7 +13,6 @@ class CreateAccountView(CreateView):
 class ViewAccountView(generic.DetailView):
 	model = CustomUser
 	template_name = 'users/viewAccount.html'
-	# success_url = reverse_lazy('users:viewAccount')
 	success_url = reverse_lazy('login')
 
 class AllAccountsView(generic.DetailView):

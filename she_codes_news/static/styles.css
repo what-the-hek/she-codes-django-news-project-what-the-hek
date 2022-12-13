@@ -52,3 +52,18 @@ a {
 a, p {
     font-family: monospace;
 }
+
+form {
+    margin: 20px 0px;
+}
+
+.log-button {
+    padding: 5px;
+    background-color: #4D6E80;
+    color: white;
+    border-radius: 2px;
+}
+
+.log-button:hover {
+    background-color: darkslategray;
+}
