@@ -16,6 +16,6 @@ class ViewAccountView(generic.DetailView):
 	success_url = reverse_lazy('login')
 
 class AllAccountsView(generic.DetailView):
-	# model = CustomUser
+	model = CustomUser
 	template_name = 'users/viewAllAccounts.html'
 	success_url = reverse_lazy('login')

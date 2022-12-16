@@ -5,6 +5,15 @@
 
 <p>Hello {{ user.username }}</p>
 
-
+<!-- re-write this to check for user accounts -->
+<div>
+    {% if latest_stories %}
+        {% for story in latest_stories %}
+            {% include "./storyCard.html" with story=story position=forloop.counter %}
+        {% endfor %}
+    {% else %}
+        <p>No accounts registered.</p>
+    {% endif %}
+</div>
 
 {% endblock %}

@@ -32,3 +32,18 @@ class AddStoryView(generic.CreateView):
         # this means to set the author as the user currently logged in
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+        
+# new class for viewing authors stories
+class AuthorStories(generic.ListView):
+    template_name = 'news/authorStories.html'
+
+    def get_queryset(self):
+        '''Return all news stories.'''
+        return NewsStory.objects.filter(author_id=self.kwargs['pk'])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['latest_stories'] = NewsStory.objects.order_by('-pub_date')[:4]
+        context['all_stories'] = NewsStory.objects.filter(author_id=self.kwargs['pk'])
+        return context
