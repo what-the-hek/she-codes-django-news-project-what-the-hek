@@ -53,6 +53,10 @@ a, p {
     font-family: monospace;
 }
 
+.author {
+    text-decoration: underline;
+}
+
 /* ---- form ---- */
 
 section {
@@ -106,3 +110,13 @@ button:hover {
 
 /* ---- end form ---- */
 
+.prof_image {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    border-radius: 25px;
+}
+
+img:hover {
+    filter: none;
+}

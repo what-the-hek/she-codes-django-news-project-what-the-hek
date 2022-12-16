@@ -4,9 +4,10 @@
 <h2>View Profile</h2>
 
 <p>Hello {{ user.username }}</p>
-<img src="" alt="{{ user.username }} profile picture">
+<img class="prof_image" src="{{ user.profile_image }}" alt="{{ user.username }} profile picture">
 <p>Email: {{ user.email }}</p>
-<p>Bio placeholder {{ user.bio }}</p>
+<h3>Bio</h3>
+<p>{{ user.bio }}</p>
 <!-- <h3>Published stories</h3> -->
 
 <!-- insert a form here to edit details -->

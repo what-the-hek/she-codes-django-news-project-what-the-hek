@@ -8,7 +8,7 @@
 {% block content %}
 <div id="story-wrapper">
     <h2>{{ story.title }}</h2>
-    <a href="{% url 'news:authorStories' story.author.id %}">{{ story.author }}</h4>
+    <a class="author" href="{% url 'news:authorStories' story.author.id %}">{{ story.author }}</a>
     <div id="story-content">
         <img src="{{ story.news_image }}"/>
         {{ story.content|linebreaks }}
