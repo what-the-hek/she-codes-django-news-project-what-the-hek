@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Login</h2>
-<form method="post">
-	{% csrf_token %}
-	{{ form.as_p }}
-	<button type="submit">Login</button>
-</form>
-<a class='log-button' href="{% url 'users:createAccount' %}">Create account</a>
+<section>
+	<h2>Login</h2>
+	<form method="post">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button class="" type="submit">Login</button>
+	</form>
+	<a class='log-button' href="{% url 'users:createAccount' %}">Create account</a>
+</section>
 {% endblock %}
