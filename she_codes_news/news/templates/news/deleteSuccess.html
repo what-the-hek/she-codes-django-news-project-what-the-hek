@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css" href="{% static 'news/styles.css' %}">
+{% endblock %}
+
+{% block content %}
+<section>
+    <h2>Delete successful</h2>
+     <p>You have deleted the story.</p>
+    <a class="log-button" href="{% url 'news:index' %}">Return to all news stories</a>
+</section>
+{% endblock %}

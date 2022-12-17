@@ -7,7 +7,11 @@
 
 {% block content %}
 <div class="create-story">
+    {% if add_story_view %}
     <h2>Create new story</h2>
+    {% else %}
+    <h2>Edit story</h2>
+    {% endif %}
 <form action="" method="post">
     {% csrf_token %}
     {{ form.as_p }}

@@ -8,6 +8,8 @@
 {% block content %}
     
    <h2>Stories by {{ author }}</h2>
+   <img class="prof_image_stories" src="{{ author.profile_image }}" alt="{{ author.username }} profile picture">
+   <p>See my bio</p>
 
 <div id="all-stories">
     {% if latest_stories %}

@@ -117,6 +117,13 @@ button:hover {
     border-radius: 25px;
 }
 
+.prof_image_stories {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    border-radius: 50px;
+}
+
 img:hover {
     filter: none;
 }
