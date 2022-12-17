@@ -2,6 +2,7 @@ from django.views import generic
 from django.urls import reverse_lazy
 from .models import NewsStory
 from .forms import StoryForm
+from users.models import CustomUser
 
 
 class IndexView(generic.ListView):
@@ -46,4 +47,5 @@ class AuthorStories(generic.ListView):
         context = super().get_context_data(**kwargs)
         context['latest_stories'] = NewsStory.objects.order_by('-pub_date')[:4]
         context['all_stories'] = NewsStory.objects.filter(author_id=self.kwargs['pk'])
+        context['author'] = CustomUser.objects.get(id=self.kwargs['pk'])
         return context
