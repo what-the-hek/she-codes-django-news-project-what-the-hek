@@ -25,6 +25,11 @@ class StoryView(generic.DetailView):
     template_name = 'news/story.html'
     context_object_name = 'story'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["form"] = CommentForm
+        return context
+
 
 class AddStoryView(generic.CreateView):
     form_class = StoryForm

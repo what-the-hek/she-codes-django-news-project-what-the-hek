@@ -16,6 +16,13 @@
     </div>
 </div>
 <div id="comment-wrapper">
+    {% if request.user.is_authenticated %}
+    <form method="POST" action="{% url 'news:addComment' story.id %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="submit-button" type="submit" value="Add comment">
+    </form>
+    {% endif %}
     <ul>
     {% for comments in story.comments.all %}
     <li>{{ comments.author }} ({{ comments.created_date|date:'D, d M y h.i a' }}): {{ comments.content }}</li>
@@ -25,7 +32,7 @@
 {% if request.user.is_authenticated %}
 <div>
     <p>Last edited: {{ story.modified_date|date:'D d M y, h.i a'}}</p>
-    <a class="log-button" href="{% url 'news:addComment' story.id %}">Add comment</a>
+    <!-- <a class="log-button" href="{% url 'news:addComment' story.id %}">Add comment</a> -->
     <a class="log-button" href="{% url 'news:editStory' story.id %}">Edit story</a>
     <a class="log-button" href="{% url 'news:deleteStory' story.id %}">Delete story</a>
 </div>
