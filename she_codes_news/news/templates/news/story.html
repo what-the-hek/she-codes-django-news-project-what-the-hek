@@ -10,8 +10,8 @@
 <div id="story-wrapper">
     <img src="{{ story.news_image }}"/>
     <h2>{{ story.title }}</h2>
-    <p>Published: {{ story.pub_date|date:'d M y' }}</p>
-    <p>Author: {{ story.author }} <a class="log-button" href="{% url 'news:authorStories' story.author.id %}">View other stories by {{ story.author }}</a></p>
+    <p class="auth-pub">Published: {{ story.pub_date|date:'d M y' }}</p>
+    <p class="auth-pub">View stories by author: <a class="view-stories" href="{% url 'news:authorStories' story.author.id %}">{{ story.author }}</a> </p>
     <div id="story-content">
         {{ story.content|linebreaks }}
     </div>

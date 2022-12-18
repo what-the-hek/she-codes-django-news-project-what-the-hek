@@ -1,7 +1,5 @@
-<section class="commentCard">
+<section class="comment-card">
+    <p id="comment-author"> - {{ comment.author }}</p>
+    <p>{{ comment.created_date|date:'D, d M y h.i a' }}</p>
     <p>{{ comment.content }}</p>
-    <div>
-        <p>{{ comment.author }}</p>
-        <p>{{ comment.created_date|date:'D, d M y h.i a' }}</p>
-    </div>
 </section>
