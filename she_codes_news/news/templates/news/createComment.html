@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css" href="{% static 'news/styles.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="create-story">
+    <h2>Add comment</h2>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% if request.user.is_authenticated %}
+    <input class="submit-button" type="submit" value="Submit">
+    {% else %}
+    <p class="warning-label">You are not logged in. Please log in to comment on stories.</p>
+    <a class="log-button" href="{% url 'login' %}">Login</a>
+    {% endif %}
+</form>
+</div>
+{% endblock %}

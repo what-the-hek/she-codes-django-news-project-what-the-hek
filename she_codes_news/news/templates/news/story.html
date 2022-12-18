@@ -8,15 +8,26 @@
 {% block content %}
 <div id="story-wrapper">
     <h2>{{ story.title }}</h2>
-    <p>{{ story.author }}</p>
+    <p>Published: {{ story.pub_date|date:'d M y' }}</p>
+    <p>Author: {{ story.author }} <a class="log-button" href="{% url 'news:authorStories' story.author.id %}">View other stories by {{ story.author }}</a></p>
     <div id="story-content">
         <img src="{{ story.news_image }}"/>
         {{ story.content|linebreaks }}
     </div>
-    <a class="log-button" href="{% url 'news:authorStories' story.author.id %}">View other stories by {{ story.author }}</a>
-    {% if request.user.is_authenticated %}
+</div>
+<div id="comment-wrapper">
+    <ul>
+    {% for comments in story.comments.all %}
+    <li>{{ comments.author }} ({{ comments.created_date|date:'D, d M y h.i a' }}): {{ comments.content }}</li>
+    {% endfor %}
+    </ul>
+</div>
+{% if request.user.is_authenticated %}
+<div>
+    <p>Last edited: {{ story.modified_date|date:'D d M y, h.i a'}}</p>
+    <a class="log-button" href="{% url 'news:addComment' story.id %}">Add comment</a>
     <a class="log-button" href="{% url 'news:editStory' story.id %}">Edit story</a>
     <a class="log-button" href="{% url 'news:deleteStory' story.id %}">Delete story</a>
-    {% endif %}
 </div>
+{% endif %}
 {% endblock %}

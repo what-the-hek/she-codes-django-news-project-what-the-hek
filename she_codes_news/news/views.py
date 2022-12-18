@@ -1,9 +1,9 @@
 from django.views import generic
 from django.urls import reverse_lazy
-from .models import NewsStory
-from .forms import StoryForm
+from .models import NewsStory, Comment
+from .forms import StoryForm, CommentForm
 from users.models import CustomUser
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 
 class IndexView(generic.ListView):
@@ -19,10 +19,12 @@ class IndexView(generic.ListView):
         context['all_stories'] = NewsStory.objects.all()
         return context
 
+
 class StoryView(generic.DetailView):
     model = NewsStory
     template_name = 'news/story.html'
     context_object_name = 'story'
+
 
 class AddStoryView(generic.CreateView):
     form_class = StoryForm
@@ -40,6 +42,7 @@ class AddStoryView(generic.CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
+
 class EditStoryView(generic.edit.UpdateView):
     form_class = StoryForm
     model = NewsStory
@@ -55,11 +58,41 @@ class EditStoryView(generic.edit.UpdateView):
     def get_queryset(self):
         return NewsStory.objects.all()
 
+
+class AddCommentView(generic.CreateView):
+    form_class = CommentForm
+    template_name = 'news/createComment.html'
+    # success_url = reverse_lazy('news:story', kwargs={'pk'})
+    # success_url = reverse_lazy('news:index')
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        pk = self.kwargs.get("pk")
+        story = get_object_or_404(NewsStory, pk=pk)
+        form.instance.story = story
+        return super().form_valid(form)
+
+    def get_queryset(self):
+        return Comment.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comments'] = Comment.objects.order_by('-created_date')
+        return context
+
+    def get_success_url(self) -> str:
+        pk = self.kwargs.get("pk")
+        return reverse_lazy("news:story", kwargs={'pk':pk})
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['story'] = NewsStory.objects.get(id=self.kwargs['pk'])
+    #     return context
+
+
 def delete_success_view(request):
     return render(request, 'news/deleteSuccess.html')
-    # model = NewsStory
-    # template_name = 'news/deleteSuccess.html'
-    # success_url = reverse_lazy('news:index')
+
 
 class DeleteStoryView(generic.edit.DeleteView):
     model = NewsStory
@@ -70,6 +103,7 @@ class DeleteStoryView(generic.edit.DeleteView):
         context = super().get_context_data(**kwargs)
         context['story'] = NewsStory.objects.get(id=self.kwargs['pk'])
         return context
+
 
 # new class for viewing authors stories
 class AuthorStories(generic.ListView):
