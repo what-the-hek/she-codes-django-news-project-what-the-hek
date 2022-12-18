@@ -75,14 +75,25 @@
     flex-grow: 1;
 }
 
-#story-content {
-    text-align: justify;
+#story {
+    display: flex;
+    flex-direction: column;
 }
 
-#story-content img {
-    float: right;
-    margin: 0 0 10px 10px;
+#story-wrapper {
     width: 50%;
+}
+
+#story-wrapper img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+}
+
+#user_storyadmin {
+    padding: 10px;
+    margin: 10px;
 }
 
 /* ---- form ---- */
@@ -127,3 +138,13 @@ form input, form textarea {
 }
 
 /* ---- end form ---- */
+
+/* ---- comments ---- */
+#comment-wrapper {
+    width: 50%;
+}
+
+#comment-wrapper form {
+    width: 100%;
+}
+/* -- end comments -- */

@@ -28,6 +28,7 @@ class StoryView(generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["form"] = CommentForm
+        context["comments"] = Comment.objects.order_by('-created_date')
         return context
 
 
@@ -67,8 +68,7 @@ class EditStoryView(generic.edit.UpdateView):
 class AddCommentView(generic.CreateView):
     form_class = CommentForm
     template_name = 'news/createComment.html'
-    # success_url = reverse_lazy('news:story', kwargs={'pk'})
-    # success_url = reverse_lazy('news:index')
+    context_object_name = 'comments'
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -89,12 +89,8 @@ class AddCommentView(generic.CreateView):
         pk = self.kwargs.get("pk")
         return reverse_lazy("news:story", kwargs={'pk':pk})
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['story'] = NewsStory.objects.get(id=self.kwargs['pk'])
-    #     return context
 
-
+# ----- simple success page to confirm deletion of story ----- 
 def delete_success_view(request):
     return render(request, 'news/deleteSuccess.html')
 

@@ -6,16 +6,25 @@
 {% endblock %}
 
 {% block content %}
+<section id="story">
 <div id="story-wrapper">
+    <img src="{{ story.news_image }}"/>
     <h2>{{ story.title }}</h2>
     <p>Published: {{ story.pub_date|date:'d M y' }}</p>
     <p>Author: {{ story.author }} <a class="log-button" href="{% url 'news:authorStories' story.author.id %}">View other stories by {{ story.author }}</a></p>
     <div id="story-content">
-        <img src="{{ story.news_image }}"/>
         {{ story.content|linebreaks }}
     </div>
 </div>
 <div id="comment-wrapper">
+    <h3>Comments</h3>
+    {% if story.comments.count %}
+        {% for comment in story.comments.all %}
+            {% include "./commentCard.html" with comment=comment %}
+        {% endfor %}
+    {% else %}
+    <p>No comments yet.</p>
+    {% endif %}
     {% if request.user.is_authenticated %}
     <form method="POST" action="{% url 'news:addComment' story.id %}">
         {% csrf_token %}
@@ -23,18 +32,16 @@
         <input class="submit-button" type="submit" value="Add comment">
     </form>
     {% endif %}
-    <ul>
-    {% for comments in story.comments.all %}
-    <li>{{ comments.author }} ({{ comments.created_date|date:'D, d M y h.i a' }}): {{ comments.content }}</li>
-    {% endfor %}
-    </ul>
+</div>
+
 </div>
 {% if request.user.is_authenticated %}
-<div>
+<div id="user_storyadmin">
+    <h3>User admin</h3>
     <p>Last edited: {{ story.modified_date|date:'D d M y, h.i a'}}</p>
-    <!-- <a class="log-button" href="{% url 'news:addComment' story.id %}">Add comment</a> -->
     <a class="log-button" href="{% url 'news:editStory' story.id %}">Edit story</a>
     <a class="log-button" href="{% url 'news:deleteStory' story.id %}">Delete story</a>
 </div>
 {% endif %}
+</section>
 {% endblock %}

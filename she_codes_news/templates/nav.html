@@ -4,6 +4,9 @@
     
     <a href="{% url 'users:viewAccount' request.user.id %}">{{ user.username }}</a>
     <a href="{% url 'news:newStory' %}">Write New Story</a>
+    {% if user.is_superuser %}
+    <a href="{% url 'admin:index' %}">Admin</a>
+    {% endif %}
     <!-- <a href="{% url 'users:viewAllAccounts' request.user.id %}">View accounts</a> -->
     <a href="{% url 'logout' %}">Logout</a>
     {% else %}
