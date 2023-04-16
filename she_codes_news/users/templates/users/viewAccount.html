@@ -1,13 +1,23 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css" href="{% static 'users/styles.css' %}">
+{% endblock %}
 
 {% block content %}
-<h2>View Profile</h2>
-
-<p>Hello {{ user.username }}</p>
-<img class="prof_image" src="{{ user.profile_image }}" alt="{{ user.username }} profile picture">
-<p>Email: {{ user.email }}</p>
-<h3>Bio</h3>
-<p>{{ user.bio }}</p>
+<div class="auth-details">
+    <h2>Hello {{ user.username }}</h2>
+    <div class="auth-details-wrapper">
+        <img class="prof_image" src="{{ user.profile_image }}" alt="{{ user.username }} profile picture">
+        <div>
+            <p><span class="bio-heading">Name:</span> {{ user.username }}</p>
+            <p><span class="bio-heading">Email:</span> <a href="mailto:{{user.email}}">{{ user.email }}</a></p>
+            <p class="bio-heading">Bio:</p>
+            <p>{{ user.bio }}</p>
+        </div>
+    </div>
+</div>
 <!-- insert a form here to edit details -->
 
 <!-- <p>Change username</p>

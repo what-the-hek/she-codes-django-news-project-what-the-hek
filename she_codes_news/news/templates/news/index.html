@@ -11,7 +11,7 @@
    <!-- for user in users, include username -->
    <!-- <a href="">View stories by {{ user.username }}</a> -->
 
-   <h2>Latest News</h2>
+   <h2 class="main-h2" >Latest News</h2>
 <!-- this may need images and links -->
     <div id="latest-stories">
         {% if latest_stories %}
@@ -23,7 +23,7 @@
         {% endif %}
     </div>
 
-    <h2>All News</h2>
+    <h2 class="main-h2" >All News</h2>
     <div id="all-stories">
         {% if latest_stories %}
             {% for story in all_stories %}
