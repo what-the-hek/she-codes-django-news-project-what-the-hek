@@ -4,11 +4,12 @@
     border-radius: 10px;
     box-shadow: 2px 2px 5px var(--shadow);
     padding: 10px;
+    transition: .5s;
 }
 
-/* .story-card:hover {
-    translate: ;
-} */
+.story-card:hover {
+    transform: translate(0, -10px);
+}
 
 .story-card img {
     width: 100%;
