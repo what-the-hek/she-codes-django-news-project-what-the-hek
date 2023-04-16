@@ -8,7 +8,7 @@
 {% block content %}
 <div class="create-story">
     <h2>Add comment</h2>
-<form action="" method="post">
+<form id="comment-form" action="" method="post">
     {% csrf_token %}
     {{ form.as_p }}
     {% if request.user.is_authenticated %}

@@ -2,12 +2,12 @@
 
 {% block content %}
 <section>
-<h2>Create Account</h2>
+<h2 class="form-h2">Create Account</h2>
 <form method="post">
     <!-- csrf token is a security feature to prevent people stealing your credentials -->
 	{% csrf_token %}
 	{{ form.as_p }}
-	<button type="submit">Login</button>
+	<button type="submit">Submit</button>
 </form>
 </section>
 {% endblock %}

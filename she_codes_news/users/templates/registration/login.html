@@ -2,11 +2,11 @@
 
 {% block content %}
 <section>
-	<h2>Login</h2>
+	<h2 class="form-h2">Log in</h2>
 	<form method="post">
 		{% csrf_token %}
 		{{ form.as_p }}
-		<button class="" type="submit">Login</button>
+		<button class="" type="submit">Log in</button>
 	</form>
 	<a class='log-button' href="{% url 'users:createAccount' %}">Create account</a>
 </section>
