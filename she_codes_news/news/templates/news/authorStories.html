@@ -6,11 +6,17 @@
 {% endblock %}
 
 {% block content %}
-    
-   <h2>Stories by {{ author }}</h2>
-   <img class="prof_image_stories" src="{{ author.profile_image }}" alt="{{ author.username }} profile picture">
-   <p>See my bio</p>
+    <div class="auth-details">
+        <h2>{{ author }}</h2>
+        <div class="auth-details-wrapper">
+            <img class="prof_image_stories" src="{{ author.profile_image }}" alt="{{ author.username }} profile picture">
+            <div>
+                <p class="auth-bio" >{{ author.bio }}</p>
+            </div>
+        </div>
+    </div>
 
+   <h3>Stories by {{ author }}</h3>
 <div id="all-stories">
     {% if latest_stories %}
         {% for story in all_stories %}
